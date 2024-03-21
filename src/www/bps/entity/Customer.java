@@ -136,11 +136,11 @@ public class Customer {
 	}
 
 	public void setBirthday(LocalDate birthday) {
-		if(birthday!=null &&
-				LocalDate.now().getYear()-birthday.getYear() >=12) {
+		if(birthday!=null && 
+					LocalDate.now().getYear()-birthday.getYear() >=12) {
 			this.birthday = birthday;
 		}else {
-			System.err.printf("customer must 12 or over 12 year old, %s is not eligible.\n", birthday);
+			System.err.printf("客戶必須年滿12歲, %s不符合條件\n", birthday);
 		}
 	}
 	
@@ -155,6 +155,12 @@ public class Customer {
 				System.err.printf("must enter customer's birthday and match iso8601 format.");
 			}
 	}
+	
+	public void setBirthday(int year, int month, int day) {
+		LocalDate date = LocalDate.of(year, month, day);
+		//Date date = new GregorianCalendar(year, month-1, day).getTime(); //birthday使用java.util.Date
+		this.setBirthday(date);
+	}	
 
 	public int getAge() {
 		return getAge(this.birthday);
